@@ -126,4 +126,34 @@ class SurveyServiceTest {
         verify(surveyRepository, times(1)).findById(surveyId);
         verify(surveyRepository, never()).save(any(Survey.class));
     }
+
+    @Test
+    void testUpdateSurvey_UpdatesQuestionsFromSurveyDetails() {
+        Long surveyId = 1L;
+        Survey existingSurvey = new Survey();
+        existingSurvey.setId(surveyId);
+        existingSurvey.setTitle("Old Title");
+        Question oldQuestion = new Question();
+        oldQuestion.setText("Old Question");
+        existingSurvey.getQuestions().add(oldQuestion);
+
+        Survey updatedDetails = new Survey();
+        updatedDetails.setTitle("New Title");
+        updatedDetails.setDescription("New Description");
+        updatedDetails.setType(SurveyType.OPEN);
+        Question newQuestion = new Question();
+        newQuestion.setText("New Question");
+        updatedDetails.getQuestions().add(newQuestion);
+
+        when(surveyRepository.findById(surveyId)).thenReturn(Optional.of(existingSurvey));
+        when(surveyRepository.save(any(Survey.class))).thenReturn(existingSurvey);
+
+        Survey result = surveyService.updateSurvey(surveyId, updatedDetails);
+
+        assertNotNull(result);
+        assertEquals(1, result.getQuestions().size());
+        assertEquals("New Question", result.getQuestions().get(0).getText());
+        verify(surveyRepository, times(1)).findById(surveyId);
+        verify(surveyRepository, times(1)).save(any(Survey.class));
+    }
 }
