@@ -1,0 +1,30 @@
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-menubar {
+  border-radius: 0;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.layout-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link {
+  color: white !important;
+}
+
+.layout-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.layout-content {
+  flex: 1;
+  padding: 2rem;
+  background-color: #f8f9fa;
+}
+
+@media screen and (max-width: 960px) {
+  .layout-content {
+    padding: 1rem;
+  }
+}

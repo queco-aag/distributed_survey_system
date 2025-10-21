@@ -1,0 +1,36 @@
+.survey-list {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.status-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.status-badge.active {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-badge.inactive {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.survey-form {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.survey-form .field {
+  margin-bottom: 1.5rem;
+}
+
+.survey-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
