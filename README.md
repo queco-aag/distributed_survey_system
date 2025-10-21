@@ -22,6 +22,7 @@ El backend es una aplicación Spring Boot que proporciona una API REST para gest
 ### Ejecutar el Backend
 
 ```bash
+cd backend
 mvn clean install
 mvn spring-boot:run
 ```

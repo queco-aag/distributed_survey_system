@@ -82,7 +82,7 @@ The survey response is submitted as:
 
 ## Testing Instructions
 
-1. Start the backend: `mvn spring-boot:run`
+1. Start the backend: `cd backend && mvn spring-boot:run`
 2. Start the frontend: `cd frontend && npm run dev`
 3. Register/Login at http://localhost:5173
 4. Navigate to Surveys
@@ -100,10 +100,10 @@ The survey response is submitted as:
 ## Files Modified/Added
 
 ### Backend
-- `src/main/java/com/survey/system/service/SurveyResponseService.java` (new)
-- `src/main/java/com/survey/system/controller/SurveyResponseController.java` (new)
-- `src/main/java/com/survey/system/config/SecurityConfig.java` (modified)
-- `src/main/java/com/survey/system/security/JwtAuthenticationFilter.java` (modified)
+- `backend/src/main/java/com/survey/system/service/SurveyResponseService.java` (new)
+- `backend/src/main/java/com/survey/system/controller/SurveyResponseController.java` (new)
+- `backend/src/main/java/com/survey/system/config/SecurityConfig.java` (modified)
+- `backend/src/main/java/com/survey/system/security/JwtAuthenticationFilter.java` (modified)
 
 ### Frontend
 - `frontend/src/components/survey/TakeSurvey.jsx` (new)
