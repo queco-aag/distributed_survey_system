@@ -1,5 +1,6 @@
 package com.survey.system.service;
 
+import com.survey.system.exception.SurveyValidationException;
 import com.survey.system.model.Survey;
 import com.survey.system.model.SurveyType;
 import com.survey.system.repository.SurveyRepository;
@@ -18,6 +19,7 @@ public class SurveyService {
     private SurveyRepository surveyRepository;
 
     public Survey createSurvey(Survey survey) {
+        validateSurveyQuestions(survey);
         return surveyRepository.save(survey);
     }
 
@@ -48,10 +50,17 @@ public class SurveyService {
         survey.setEndDate(surveyDetails.getEndDate());
         survey.setActive(surveyDetails.isActive());
         
+        validateSurveyQuestions(survey);
         return surveyRepository.save(survey);
     }
 
     public void deleteSurvey(Long id) {
         surveyRepository.deleteById(id);
+    }
+    
+    private void validateSurveyQuestions(Survey survey) {
+        if (survey.getQuestions() == null || survey.getQuestions().isEmpty()) {
+            throw new SurveyValidationException("Una encuesta debe contener al menos una pregunta");
+        }
     }
 }
