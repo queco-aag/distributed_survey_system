@@ -2,7 +2,6 @@ package com.survey.system.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -52,7 +51,6 @@ public class Survey {
     
     @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    @NotEmpty(message = "Una encuesta debe contener al menos una pregunta")
     private List<Question> questions = new ArrayList<>();
     
     @ManyToMany

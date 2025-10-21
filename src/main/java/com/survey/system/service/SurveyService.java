@@ -50,6 +50,12 @@ public class SurveyService {
         survey.setEndDate(surveyDetails.getEndDate());
         survey.setActive(surveyDetails.isActive());
         
+        // Update questions
+        survey.getQuestions().clear();
+        if (surveyDetails.getQuestions() != null) {
+            survey.getQuestions().addAll(surveyDetails.getQuestions());
+        }
+        
         validateSurveyQuestions(survey);
         return surveyRepository.save(survey);
     }
