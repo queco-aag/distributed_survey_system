@@ -20,6 +20,12 @@ public class AnswerOption {
     @Column(nullable = false)
     private String text;
     
+    /**
+     * Campo opcional que indica si esta opción es la respuesta correcta.
+     * Solo se utiliza cuando la encuesta es de tipo TEST o EXAM.
+     * Este campo es de funcionamiento interno para calcular el número de aciertos en un test.
+     * Por defecto es false.
+     */
     private boolean isCorrect = false;
     
     @Column(name = "order_number")
