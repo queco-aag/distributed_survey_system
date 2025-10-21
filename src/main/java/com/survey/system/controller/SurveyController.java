@@ -1,8 +1,10 @@
 package com.survey.system.controller;
 
+import com.survey.system.exception.SurveyValidationException;
 import com.survey.system.model.Survey;
 import com.survey.system.model.SurveyType;
 import com.survey.system.service.SurveyService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,16 +42,22 @@ public class SurveyController {
     }
 
     @PostMapping
-    public ResponseEntity<Survey> createSurvey(@RequestBody Survey survey) {
-        Survey createdSurvey = surveyService.createSurvey(survey);
-        return ResponseEntity.ok(createdSurvey);
+    public ResponseEntity<?> createSurvey(@Valid @RequestBody Survey survey) {
+        try {
+            Survey createdSurvey = surveyService.createSurvey(survey);
+            return ResponseEntity.ok(createdSurvey);
+        } catch (SurveyValidationException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Survey> updateSurvey(@PathVariable Long id, @RequestBody Survey survey) {
+    public ResponseEntity<?> updateSurvey(@PathVariable Long id, @Valid @RequestBody Survey survey) {
         try {
             Survey updatedSurvey = surveyService.updateSurvey(id, survey);
             return ResponseEntity.ok(updatedSurvey);
+        } catch (SurveyValidationException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
