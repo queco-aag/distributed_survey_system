@@ -68,6 +68,12 @@ function SurveyList() {
     return (
       <div className="flex gap-2">
         <Button
+          icon="pi pi-file-edit"
+          className="p-button-success p-button-sm"
+          onClick={() => navigate(`/surveys/take/${rowData.id}`)}
+          tooltip="Responder"
+        />
+        <Button
           icon="pi pi-eye"
           className="p-button-info p-button-sm"
           onClick={() => navigate(`/surveys/${rowData.id}`)}
