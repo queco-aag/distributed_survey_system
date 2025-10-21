@@ -6,6 +6,7 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Home from './pages/Home';
 import SurveyList from './components/survey/SurveyList';
+import TakeSurvey from './components/survey/TakeSurvey';
 
 // PrimeReact CSS
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
@@ -29,6 +30,14 @@ function App() {
               element={
                 <PrivateRoute>
                   <SurveyList />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="surveys/take/:id"
+              element={
+                <PrivateRoute>
+                  <TakeSurvey />
                 </PrivateRoute>
               }
             />
